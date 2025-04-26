@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog - Pet Heaven{% endblock %}
+
+{% block content %}
+<!-- Banner -->
+<section class="section section-lg section-main-bunner">
+    <div class="main-bunner-img" style="background-image: url('{% static 'images/bg-bunner-1.jpg' %}'); background-size: cover;"></div>
+    <div class="main-bunner-inner">
+        <div class="container">
+            <div class="row row-30 justify-content-lg-between align-items-lg-center">
+                <div class="col-lg-12 text-center">
+                    <h1>Pet Heaven Blog</h1>
+                    <span class="italic-subtitle offset-top-30">Stories, tips, and memories of our beloved companions</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts -->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row row-50">
+            {% for post in posts %}
+            <div class="col-md-6 col-lg-4">
+                <article class="post-classic">
+                    {% if post.featured_image %}
+                    <div class="post-classic-figure">
+                        <a href="{% url 'blog_post' post.published_at.year post.published_at.month post.slug %}">
+                            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" width="370" height="255"/>
+                        </a>
+                    </div>
+                    {% endif %}
+                    <div class="post-classic-content">
+                        <h5 class="post-classic-title">
+                            <a href="{% url 'blog_post' post.published_at.year post.published_at.month post.slug %}">{{ post.title }}</a>
+                        </h5>
+                        <div class="post-classic-time">
+                            <time datetime="{{ post.published_at|date:'Y-m-d' }}">
+                                {{ post.published_at|date:"F d, Y" }}
+                            </time>
+                        </div>
+                        <p class="post-classic-text">{{ post.excerpt|default:post.content|truncatewords:30 }}</p>
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <h4>No blog posts have been published yet.</h4>
+                <p>Check back soon for updates and stories about our beloved pets.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %} 

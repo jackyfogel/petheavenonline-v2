@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Logged Out - Pet Heaven{% endblock %}
+
+{% block content %}
+<section class="section section-md bg-default">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <h3>You have been logged out</h3>
+                <p>Thank you for visiting Pet Heaven.</p>
+                <p><a href="{% url 'home' %}" class="button button-lg button-gradient">Return to Home</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

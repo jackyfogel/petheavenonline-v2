@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - Pet Heaven{% endblock %}
+
+{% block content %}
+<!-- Parallax Header -->
+<section class="section parallax-container breadcrumb-media-content" data-parallax-img="{% static 'images/bg-bunner-1.jpg' %}">
+    <div class="parallax-content breadcrumbs-custom context-dark">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9">
+                    <h2 class="breadcrumbs-custom-title">Login</h2>
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li class="active">Login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Login Form -->
+<section class="section section-md bg-default">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3 class="text-center mb-4">Welcome Back</h3>
+
+                {% if user.is_authenticated %}
+                    <div class="alert alert-warning">
+                        You are currently logged in as {{ user.email|default:user.username }}. 
+                        <a href="{% url 'logout' %}" class="alert-link">Logout</a> to switch accounts.
+                    </div>
+                {% endif %}
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ error }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post" action="{% url 'login' %}" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <input type="email" name="username" class="form-control" placeholder="Email" required id="id_username">
+                        {% if form.username.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.username.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password" required id="id_password">
+                        {% if form.password.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.password.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="button button-lg button-gradient button-block">LOGIN</button>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="{% url 'register' %}" class="text-primary">Register here</a></p>
+                        <p>Forgot your password? <a href="{% url 'password_reset' %}" class="text-primary">Reset it here</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

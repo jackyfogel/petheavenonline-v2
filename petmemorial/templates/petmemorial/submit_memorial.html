@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Submit Memorial - Pet Heaven{% endblock %}
+
+{% block content %}
+<!-- Parallax Header -->
+<section class="section parallax-container breadcrumb-media-content" data-parallax-img="{% static 'images/bg-bunner-1.jpg' %}">
+    <div class="parallax-content breadcrumbs-custom context-dark">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9">
+                    <h2 class="breadcrumbs-custom-title">Submit Memorial</h2>
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'memorial_list' %}">Memorials</a></li>
+                        <li class="active">Submit Memorial</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Memorial Submission Form -->
+<section class="section section-md bg-default">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h3 class="text-center mb-4">Create a Memorial for Your Pet</h3>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.pet_name.id_for_label }}" class="form-label">Pet's Name</label>
+                        {{ form.pet_name }}
+                        {% if form.pet_name.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.pet_name.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.species.id_for_label }}" class="form-label">Species</label>
+                        {{ form.species }}
+                        {% if form.species.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.species.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.breed.id_for_label }}" class="form-label">Breed (Optional)</label>
+                        {{ form.breed }}
+                        {% if form.breed.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.breed.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.year_of_birth.id_for_label }}" class="form-label">Year of Birth</label>
+                            {{ form.year_of_birth }}
+                            {% if form.year_of_birth.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.year_of_birth.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.year_of_death.id_for_label }}" class="form-label">Year of Death</label>
+                            {{ form.year_of_death }}
+                            {% if form.year_of_death.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.year_of_death.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.photo.id_for_label }}" class="form-label">Main Photo</label>
+                        {{ form.photo }}
+                        {% if form.photo.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.photo.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="form-text">Upload a favorite photo of your pet (max 5MB)</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.tribute_quote.id_for_label }}" class="form-label">Tribute Quote</label>
+                        {{ form.tribute_quote }}
+                        {% if form.tribute_quote.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.tribute_quote.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.dominant_traits.id_for_label }}" class="form-label">Personality Traits (Optional)</label>
+                        {{ form.dominant_traits }}
+                        {% if form.dominant_traits.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.dominant_traits.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.about_pet.id_for_label }}" class="form-label">About Your Pet</label>
+                        {{ form.about_pet }}
+                        {% if form.about_pet.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.about_pet.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.video_url.id_for_label }}" class="form-label">Video URL (Optional)</label>
+                        {{ form.video_url }}
+                        {% if form.video_url.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.video_url.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.owner_display_name.id_for_label }}" class="form-label">Display Name (Optional)</label>
+                        {{ form.owner_display_name }}
+                        {% if form.owner_display_name.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.owner_display_name.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Gallery Images Section -->
+                    <hr class="my-4">
+                    <h4 class="mb-3">Photo Gallery</h4>
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.images.id_for_label }}" class="form-label">Gallery Images</label>
+                        {{ form.images }}
+                        {% if form.images.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.images.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="form-text">{{ form.images.help_text }}</div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="button button-lg button-gradient button-block">Create Memorial</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

@@ -1,0 +1,68 @@
+{% load static %}
+<!-- Page Header-->
+<header class="section page-header">
+  <!-- RD Navbar-->
+  <div class="rd-navbar-wrap">
+    <nav class="rd-navbar rd-navbar-modern context-dark" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+      <div class="rd-navbar-main-outer">
+        <div class="rd-navbar-main">
+          <!-- RD Navbar Panel-->
+          <div class="rd-navbar-panel">
+            <!-- RD Navbar Toggle-->
+            <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+            <!-- RD Navbar Brand-->
+            <div class="rd-navbar-brand">
+              <!--Brand--><a class="brand" href="{% url 'home' %}">
+                <img class="brand-logo-dark" src="{% static 'images/logo-default-303x84.png' %}" alt="" width="151" height="42"/>
+                <img class="brand-logo-light" src="{% static 'images/logo-inverse-303x84.png' %}" alt="" width="151" height="42"/>
+              </a>
+            </div>
+          </div>
+          <div class="rd-navbar-main-element">
+            <div class="rd-navbar-nav-wrap">
+              <!-- RD Navbar Nav-->
+              <ul class="rd-navbar-nav">
+                {% block navigation %}
+                <li class="rd-nav-item {% if request.path == '/' %}active{% endif %} me-3">
+                  <a class="rd-nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="rd-nav-item {% if 'memorial' in request.path %}active{% endif %} me-3">
+                  <a class="rd-nav-link" href="{% url 'memorial_list' %}">Pet Memorial</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="rd-nav-item {% if 'submit_memorial' in request.path %}active{% endif %} me-3">
+                  <a class="rd-nav-link" href="{% url 'submit_memorial' %}">Create Memorial</a>
+                </li>
+                {% endif %}
+                <li class="rd-nav-item {% if 'blog' in request.path %}active{% endif %} me-3">
+                  <a class="rd-nav-link" href="{% url 'blog_list' %}">Blog</a>
+                </li>
+                {% endblock %}
+              </ul>
+              <ul class="rd-navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                  <li class="rd-nav-item me-3">
+                    <span class="rd-nav-link">{{ user.email|default:user.username }}</span>
+                  </li>
+                  <li class="rd-nav-item">
+                    <form method="post" action="{% url 'logout' %}" class="d-inline">
+                      {% csrf_token %}
+                      <button type="submit" class="rd-nav-link btn btn-link p-0">Logout</button>
+                    </form>
+                  </li>
+                {% else %}
+                  <li class="rd-nav-item {% if 'login' in request.path %}active{% endif %} me-3">
+                    <a class="rd-nav-link" href="{% url 'login' %}">Login</a>
+                  </li>
+                  <li class="rd-nav-item {% if 'register' in request.path %}active{% endif %}">
+                    <a class="rd-nav-link" href="{% url 'register' %}">Register</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,54 @@
+<!-- Page Footer-->
+<footer class="section footer-classic">
+  <div class="container">
+    <div class="row row-30">
+      <div class="col-lg-4">
+        <div class="pr-xl-5">
+          <h5>About Pet Heaven</h5>
+          <p>A place to honor and remember our beloved pets who have crossed the rainbow bridge. Share their stories, memories, and the love that will forever remain in our hearts.</p>
+          <ul class="social-list">
+            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-facebook" href="#"></a></li>
+            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-instagram" href="#"></a></li>
+            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-twitter" href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h5>Quick Links</h5>
+        <ul class="nav-list">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'memorial_list' %}">Pet Memorials</a></li>
+          <li><a href="{% url 'blog_list' %}">Blog</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5>Contact Information</h5>
+        <dl class="contact-list">
+          <dt>Email:</dt>
+          <dd><a href="mailto:info@petheaven.com">info@petheaven.com</a></dd>
+          <dt>Address:</dt>
+          <dd>123 Rainbow Bridge Lane, Pet Heaven, PH 12345</dd>
+          <dt>Phone:</dt>
+          <dd><a href="tel:#">1-800-PET-LOVE</a></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="rights">
+          <span>&copy; {% now 'Y' %} Pet Heaven. All Rights Reserved.</span>
+          <span>|</span>
+          <a href="#">Privacy Policy</a>
+          <span>|</span>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .details {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Memorial Submission Received</h1>
+    </div>
+    
+    <div class="content">
+        <p>Dear {{ user.email }},</p>
+        
+        <p>Thank you for submitting a memorial for {{ pet_name }}. We have received your submission and it is currently pending review by our admin team.</p>
+        
+        <div class="details">
+            <h3>Memorial Details:</h3>
+            <p><strong>Pet Name:</strong> {{ pet_name }}</p>
+            <p><strong>Species:</strong> {{ species }}</p>
+            {% if breed %}<p><strong>Breed:</strong> {{ breed }}</p>{% endif %}
+            <p><strong>Submission Date:</strong> {{ submission_date }}</p>
+        </div>
+
+        <div class="note">
+            <strong>Important Note:</strong>
+            <ul>
+                <li>Your memorial is currently in a pending state and is not yet visible on our website.</li>
+                <li>Our admin team will review your submission within 24-48 hours.</li>
+                <li>You will receive another email notification once your memorial has been approved and is live on the site.</li>
+            </ul>
+        </div>
+
+        <p>If you have any questions about your submission, please don't hesitate to contact us.</p>
+        
+        <p>Thank you for choosing Pet Heaven to honor your beloved pet's memory.</p>
+        
+        <p>Best regards,<br>The Pet Heaven Team</p>
+    </div>
+</body>
+</html> 

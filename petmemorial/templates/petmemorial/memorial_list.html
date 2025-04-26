@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pet Memorials - Pet Heaven{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs -->
+<section class="section section-lg section-main-bunner">
+    <div class="main-bunner-img" style="background-image: url('{% static 'images/bg-bunner-1.jpg' %}'); background-size: cover;"></div>
+    <div class="main-bunner-inner">
+        <div class="container">
+            <div class="row row-30 justify-content-lg-between align-items-lg-center">
+                <div class="col-lg-12 text-center">
+                    <h1>Pet Memorials</h1>
+                    <span class="italic-subtitle offset-top-30">Honor and remember your beloved pets</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Memorial List -->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row row-50">
+            {% for memorial in memorials %}
+            <div class="col-md-6 col-lg-4">
+                <div class="post-classic">
+                    {% if memorial.photo %}
+                    <div class="post-classic-figure">
+                        <a href="{% url 'memorial' memorial.slug %}">
+                            <img src="{{ memorial.photo.url }}" alt="{{ memorial.pet_name }}" width="370" height="255"/>
+                        </a>
+                    </div>
+                    {% endif %}
+                    <div class="post-classic-content">
+                        <h5 class="post-classic-title">
+                            <a href="{% url 'memorial' memorial.slug %}">{{ memorial.pet_name }}</a>
+                        </h5>
+                        <div class="post-classic-time">
+                            <time>
+                                {{ memorial.year_of_birth }} - {{ memorial.year_of_death }}
+                            </time>
+                        </div>
+                        <p class="post-classic-text">{{ memorial.tribute_quote }}</p>
+                        {% if memorial.breed %}
+                        <div class="post-classic-meta">{{ memorial.species|title }} • {{ memorial.breed }}</div>
+                        {% else %}
+                        <div class="post-classic-meta">{{ memorial.species|title }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <h4>No memorials have been created yet.</h4>
+                <p>Be the first to create a memorial for your beloved pet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %} 

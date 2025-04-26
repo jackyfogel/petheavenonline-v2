@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to Pet Heaven{% endblock %}
+
+{% block content %}
+<!-- Swiper-->
+<section class="section section-lg section-main-bunner">
+    <div class="main-bunner-img" style="background-image: url('{% static 'images/bg-bunner-1.jpg' %}'); background-size: cover;"></div>
+    <div class="main-bunner-inner">
+        <div class="container">
+            <div class="row row-30 justify-content-lg-between align-items-lg-center">
+                <div class="col-lg-12 text-center">
+                    <h1>Pet Heaven Memorial</h1>
+                    <span class="italic-subtitle offset-top-30">Honor and remember your beloved pets</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features-->
+<section class="section section-lg text-center">
+    <div class="container">
+        <div class="row row-50">
+            <div class="col-md-6 col-lg-4 wow-outer">
+                <div class="wow slideInLeft">
+                    <div class="box-icon-classic">
+                        <div class="box-icon-inner decorate-triangle decorate-color-secondary">
+                            <span class="icon-xl linearicons-heart"></span>
+                        </div>
+                        <div class="box-icon-caption">
+                            <h4><a href="#">Memorial Pages</a></h4>
+                            <p>Create beautiful memorial pages for your pets that have crossed the rainbow bridge.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+                <div class="wow slideInDown">
+                    <div class="box-icon-classic">
+                        <div class="box-icon-inner decorate-circle decorate-color-secondary-2">
+                            <span class="icon-xl linearicons-camera2"></span>
+                        </div>
+                        <div class="box-icon-caption">
+                            <h4><a href="#">Photo Galleries</a></h4>
+                            <p>Share your favorite photos and memories of your beloved pets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+                <div class="wow slideInRight">
+                    <div class="box-icon-classic">
+                        <div class="box-icon-inner decorate-rectangle decorate-color-primary">
+                            <span class="icon-xl linearicons-star"></span>
+                        </div>
+                        <div class="box-icon-caption">
+                            <h4><a href="#">Tributes</a></h4>
+                            <p>Leave heartfelt messages and tributes to honor your pets' memory.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

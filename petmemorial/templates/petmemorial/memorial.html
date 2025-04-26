@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ p.pet_name }}'s Memorial - Pet Heaven{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs -->
+<section class="breadcrumbs-custom bg-image context-dark" style="background-image: url('{% static 'images/bg-bunner-1.jpg' %}');">
+    <div class="container">
+        <h2 class="breadcrumbs-custom-title">{{ p.pet_name }}'s Memorial</h2>
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'memorial_list' %}">Memorials</a></li>
+            <li class="active">{{ p.pet_name }}</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Memorial Content -->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <!-- Pet Info-->
+                <div class="single-post-info text-center">
+                    <div class="single-post-time">
+                        <time>
+                            {{ p.year_of_birth }} - {{ p.year_of_death }}
+                        </time>
+                    </div>
+                    {% if p.breed %}
+                    <div class="single-post-meta">
+                        {{ p.species|title }} • {{ p.breed }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                {% if p.photo %}
+                <!-- Pet Photo-->
+                <div class="single-post-figure text-center mb-5">
+                    <img src="{{ p.photo.url }}" alt="{{ p.pet_name }}" class="img-fluid rounded" style="max-height: 500px;"/>
+                </div>
+                {% endif %}
+
+                <!-- Memorial Message-->
+                <div class="single-post-content">
+                    <div class="quote-classic">
+                        <div class="quote-classic-text">
+                            <p class="q">{{ p.tribute_quote }}</p>
+                        </div>
+                    </div>
+
+                    {% if p.about_pet %}
+                    <div class="mt-5">
+                        <h4>About {{ p.pet_name }}</h4>
+                        <p>{{ p.about_pet }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if p.dominant_traits %}
+                    <div class="mt-4">
+                        <h4>Personality</h4>
+                        <p>{{ p.dominant_traits }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Created By -->
+                <div class="single-post-author text-center mt-5">
+                    <p class="text-muted">
+                        Memorial created by {{ p.owner_display_name|default:p.user.username }}
+                    </p>
+                </div>
+
+                {% if p.gallery.exists %}
+                <!-- Photo Gallery -->
+                <div class="mt-5">
+                    <h4 class="text-center mb-4">Photo Gallery</h4>
+                    <div class="row">
+                        {% for photo in p.gallery.all %}
+                        <div class="col-md-4 mb-4">
+                            <a href="{{ photo.image.url }}" class="thumbnail" data-lightgallery="item">
+                                <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:p.pet_name }}" class="img-fluid rounded"/>
+                            </a>
+                            {% if photo.caption %}
+                            <p class="text-center mt-2"><small>{{ photo.caption }}</small></p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if p.candles.exists %}
+<!-- Candle Messages -->
+<section class="section section-lg bg-gray-100">
+    <div class="container">
+        <h3 class="text-center mb-5">Candle Messages</h3>
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                {% for candle in p.candles.all %}
+                <div class="quote-modern">
+                    <div class="quote-modern-text">
+                        <p>{{ candle.message }}</p>
+                    </div>
+                    <div class="quote-modern-meta">
+                        <div class="quote-modern-author">{{ candle.name }}</div>
+                        <div class="quote-modern-status">{{ candle.created_at|date:"F d, Y" }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if p.video_url %}
+<!-- Video -->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="{{ p.video_url }}" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

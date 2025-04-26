@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} - Pet Heaven Blog{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs -->
+<section class="breadcrumbs-custom bg-image context-dark" style="background-image: url('{% static 'images/bg-bunner-1.jpg' %}');">
+    <div class="container">
+        <h2 class="breadcrumbs-custom-title">{{ post.title }}</h2>
+        <ul class="breadcrumbs-custom-path">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'blog_list' %}">Blog</a></li>
+            <li class="active">{{ post.title }}</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Blog Post Content -->
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <!-- Post Info-->
+                <div class="single-post-info">
+                    <div class="single-post-time">
+                        <time datetime="{{ post.published_at|date:'Y-m-d' }}">
+                            {{ post.published_at|date:"F d, Y" }}
+                        </time>
+                    </div>
+                </div>
+                
+                {% if post.featured_image %}
+                <!-- Post Image-->
+                <div class="single-post-figure">
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" width="770" height="430"/>
+                </div>
+                {% endif %}
+
+                <!-- Post Content-->
+                <div class="single-post-content">
+                    {{ post.content|safe }}
+                </div>
+
+                {% if post.tags.exists %}
+                <!-- Post Tags-->
+                <div class="single-post-tags">
+                    <span class="single-post-tags-title">Tags:</span>
+                    {% for tag in post.tags.all %}
+                    <a href="#">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if post.author %}
+                <!-- About Author-->
+                <div class="single-post-author">
+                    <div class="single-post-author-info">
+                        <h5 class="single-post-author-name">{{ post.author.get_full_name }}</h5>
+                        {% if post.author.profile.bio %}
+                        <p>{{ post.author.profile.bio }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .details {
+            margin: 20px 0;
+        }
+        .details p {
+            margin: 10px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>New Memorial Submission</h1>
+    </div>
+    
+    <div class="content">
+        <p>A new memorial has been submitted and requires your review.</p>
+        
+        <div class="details">
+            <p><strong>Pet Name:</strong> {{ memorial.name }}</p>
+            <p><strong>Submitted By:</strong> {{ user.email }}</p>
+            <p><strong>Species:</strong> {{ memorial.species }}</p>
+            <p><strong>Breed:</strong> {{ memorial.breed }}</p>
+            <p><strong>Year of Birth:</strong> {{ memorial.year_of_birth }}</p>
+            <p><strong>Year of Death:</strong> {{ memorial.year_of_death }}</p>
+            <p><strong>Description:</strong> {{ memorial.description|truncatewords:50 }}</p>
+        </div>
+
+        <p>Please review this submission and take appropriate action.</p>
+        
+        {% if request.build_absolute_uri %}
+        <a href="{{ request.build_absolute_uri }}/admin/petmemorial/petmemorial/{{ memorial.id }}/change/" class="button">
+            Review Memorial
+        </a>
+        {% endif %}
+    </div>
+</body>
+</html> 
