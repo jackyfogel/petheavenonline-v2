@@ -1,31 +1,39 @@
 {% load static %}
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
-  <head>
-    <title>{% block title %}Pet Heaven{% endblock %}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CPlayfair+Display:400,400i,700,900%7CPoppins:300">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% block extra_css %}{% endblock %}
-  </head>
-  <body>
-    <div class="preloader">
-      <div class="preloader-body">
-        <div class="cssload-container">
-          <div class="cssload-speeding-wheel"></div>
-        </div>
+<head>
+  <title>{% block title %}Pet Heaven Online{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700|Playfair+Display:400,400i,700,900|Poppins:300" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-body">
+      <div class="cssload-container">
+        <div class="cssload-speeding-wheel"></div>
       </div>
     </div>
-    <div class="page">
-      {% include 'partials/header.html' %}
+  </div>
 
-      <!-- Messages -->
-      {% if messages %}
+  <!-- Page Content -->
+  <div class="page">
+    {% include 'partials/header.html' %}
+
+    <!-- Flash Messages -->
+    {% if messages %}
       <div class="container mt-3">
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -34,15 +42,17 @@
           </div>
         {% endfor %}
       </div>
-      {% endif %}
+    {% endif %}
 
-      {% block content %}{% endblock %}
+    <!-- Main Block -->
+    {% block content %}{% endblock %}
 
-      {% include 'partials/footer.html' %}
-    </div>
-    <!-- Javascript-->
-    <script src="{% static 'js/core.min.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    {% block extra_js %}{% endblock %}
-  </body>
+    {% include 'partials/footer.html' %}
+  </div>
+
+  <!-- Scripts -->
+  <div class="snackbars" id="form-output-global"></div>
+  <script src="{% static 'js/core.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
 </html>

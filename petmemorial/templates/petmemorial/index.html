@@ -4,65 +4,268 @@
 {% block title %}Welcome to Pet Heaven{% endblock %}
 
 {% block content %}
-<!-- Swiper-->
-<section class="section section-lg section-main-bunner">
-    <div class="main-bunner-img" style="background-image: url('{% static 'images/bg-bunner-1.jpg' %}'); background-size: cover;"></div>
-    <div class="main-bunner-inner">
-        <div class="container">
+
+    <!-- Swiper-->
+      <section class="section section-lg section-main-bunner">
+        <div class="main-bunner-img" style="background-image: url('{% static 'images/header-bg.webp' %}'); background-size: cover;"></div>
+        <div class="main-bunner-inner">
+          <div class="container">
             <div class="row row-30 justify-content-lg-between align-items-lg-center">
-                <div class="col-lg-12 text-center">
-                    <h1>Pet Heaven Memorial</h1>
-                    <span class="italic-subtitle offset-top-30">Honor and remember your beloved pets</span>
-                </div>
+
+              <div class="col-lg-9 col-xl-8 order-lg-1">
+                <h1>Pet Heaven Online</h1><span class="italic-subtitle offset-top-30">Create a memorial for your beloved pet</span>
+              </div>
             </div>
+          </div>
         </div>
+      </section>
+	  <!-- Our mission-->
+      <section class="section-lg context-light">
+  <div class="container">
+    <div class="wow-outer">
+      <div class="wow slideInDown">
+        <h3 class="title-decorate text-center">In Loving Memory</h3>
+      </div>
     </div>
+    <div class="text-center mt-4">
+      <p class="lead">
+        At Pet Heaven Online, we believe every pet leaves a pawprint on our hearts. 💖<br>
+        This site was created to help you celebrate their life, honor their memory, and keep their spirit alive forever.
+      </p>
+    </div>
+  </div>
 </section>
 
-<!-- Features-->
-<section class="section section-lg text-center">
-    <div class="container">
-        <div class="row row-50">
-            <div class="col-md-6 col-lg-4 wow-outer">
-                <div class="wow slideInLeft">
-                    <div class="box-icon-classic">
-                        <div class="box-icon-inner decorate-triangle decorate-color-secondary">
-                            <span class="icon-xl linearicons-heart"></span>
-                        </div>
-                        <div class="box-icon-caption">
-                            <h4><a href="#">Memorial Pages</a></h4>
-                            <p>Create beautiful memorial pages for your pets that have crossed the rainbow bridge.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow-outer">
-                <div class="wow slideInDown">
-                    <div class="box-icon-classic">
-                        <div class="box-icon-inner decorate-circle decorate-color-secondary-2">
-                            <span class="icon-xl linearicons-camera2"></span>
-                        </div>
-                        <div class="box-icon-caption">
-                            <h4><a href="#">Photo Galleries</a></h4>
-                            <p>Share your favorite photos and memories of your beloved pets.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow-outer">
-                <div class="wow slideInRight">
-                    <div class="box-icon-classic">
-                        <div class="box-icon-inner decorate-rectangle decorate-color-primary">
-                            <span class="icon-xl linearicons-star"></span>
-                        </div>
-                        <div class="box-icon-caption">
-                            <h4><a href="#">Tributes</a></h4>
-                            <p>Leave heartfelt messages and tributes to honor your pets' memory.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+
+
+
+
+     <!-- Tabs-->
+<section class="section-lg bg-gray-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9 text-center wow-outer">
+        <div class="wow slideInLeft">
+          <h3 class="title-decorate offset-top-30">Create a Pet Memorial in 4 Simple Steps</h3>
+          <p>Honoring your beloved pet is a heartfelt and healing process. We've made it easy to create a beautiful tribute in just a few steps.<br>Your memorial will live on as a lasting reminder of the love you shared.</p>
         </div>
+      </div>
     </div>
+    <div class="tabs-custom tabs-horizontal tabs-modern" id="tabs-1">
+      <div class="row g-0 row-eq-height">
+        <div class="col-lg-4 col-xl-3 order-lg-2 wow-outer">
+          <div class="wow slideInRight">
+            <ul class="nav nav-tabs nav-tabs-modern">
+              <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-bs-toggle="tab">Step 1</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-bs-toggle="tab">Step 2</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-bs-toggle="tab">Step 3</a></li>
+              <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-4" data-bs-toggle="tab">Step 4</a></li>
+            </ul>
+            <a class="button button-lg button-primary button-tabs-modern" href="#create">Create a Memorial</a>
+          </div>
+        </div>
+        <div class="col-lg-8 col-xl-9 order-lg-1 wow-outer">
+          <div class="wow slideInLeft eq-tabs">
+            <div class="tab-content">
+
+              <!-- Step 1 -->
+              <div class="tab-pane fade show active" id="tabs-1-1">
+                <div class="event-item-classic">
+                  <div class="event-item-classic-figure">
+                    <div class="tab-circle"><span class="circle-nubmer">01</span></div>
+                  </div>
+                  <div class="event-item-classic-caption">
+                    <p class="events-time">Begin your tribute</p>
+                    <h4 class="event-item-classic-title"><a href="#">Add Your Pet’s Name & Photo</a></h4>
+                    <h5 class="event-item-classic-subtitle"><span>Includes:</span> <a href="#">pet's name, photo, and type</a></h5>
+                    <p class="speaker-text">Start by entering your pet’s name and uploading a photo that best captures their spirit. This will be the heart of their memorial page.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="tab-pane fade show" id="tabs-1-2">
+                <div class="event-item-classic">
+                  <div class="event-item-classic-figure">
+                    <div class="tab-circle"><span class="circle-nubmer">02</span></div>
+                  </div>
+                  <div class="event-item-classic-caption">
+                    <p class="events-time">Share their story</p>
+                    <h4 class="event-item-classic-title"><a href="#">Write a Loving Tribute</a></h4>
+                    <h5 class="event-item-classic-subtitle"><span>Includes:</span> <a href="#">memories, quotes, and special moments</a></h5>
+                    <p class="speaker-text">Tell the story of your pet’s life — from silly quirks to favorite toys. Sharing these memories helps preserve the bond you had forever.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="tab-pane fade show" id="tabs-1-3">
+                <div class="event-item-classic">
+                  <div class="event-item-classic-figure">
+                    <div class="tab-circle"><span class="circle-nubmer">03</span></div>
+                  </div>
+                  <div class="event-item-classic-caption">
+                    <p class="events-time">Personalize your memorial</p>
+                    <h4 class="event-item-classic-title"><a href="#">Select Background & Style</a></h4>
+                    <h5 class="event-item-classic-subtitle"><span>Includes:</span> <a href="#">background color, font style, optional music</a></h5>
+                    <p class="speaker-text">Make the page feel just right. Choose a background, font, or even a soft tune to reflect your pet’s unique personality and the love you shared.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="tab-pane fade show" id="tabs-1-4">
+                <div class="event-item-classic">
+                  <div class="event-item-classic-figure">
+                    <div class="tab-circle"><span class="circle-nubmer">04</span></div>
+                  </div>
+                  <div class="event-item-classic-caption">
+                    <p class="events-time">Publish & share</p>
+                    <h4 class="event-item-classic-title"><a href="#">Create and Share the Memorial</a></h4>
+                    <h5 class="event-item-classic-subtitle"><span>Includes:</span> <a href="#">permanent memorial link</a></h5>
+                    <p class="speaker-text">Once everything feels right, publish the memorial. You’ll receive a shareable link to honor your pet’s memory with family and friends.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+ <!--Parallax Midpage CTA-->
+<section class="section parallax-container" data-parallax-img="images/parallax-img-3.jpg">
+  <div class="parallax-content section-xxl context-dark text-center bg-dark-filter">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-md-9 col-lg-8 col-xl-7 wow-outer">
+          <div class="wow fadeInUp">
+            <h3 class="title-decorate">Celebrate Their Life, Forever 💖</h3>
+            <p class="parallax-text">
+              Create a heartfelt tribute to your beloved pet.
+              Their memory deserves a place filled with love, warmth, and peace.
+            </p>
+            <a class="offset-top-50 button button-lg button-primary" href="create-memorial.html">Create a Memorial</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Memorial of the Week -->
+<section class="section bg-light py-5">
+  <div class="container text-center">
+    <h3 class="title-decorate mb-4">Featured Memorial of the Week</h3>
+    <div class="card mx-auto shadow-sm" style="max-width: 400px;">
+      <img src="{% static 'images/bella.webp' %}" class="card-img-top rounded-top" alt="Bella the bunny">
+      <div class="card-body">
+        <h5 class="card-title">Bella</h5>
+        <p class="card-text">
+          “This week, we honor Bella: <em>‘Small hops, big love.’</em> 🐾”
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Privilege-->
+      <!-- 🐾 ChatGPT: Start of Latest Memorials Section for petheavenonline.com -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4 text-center text-muted">Latest Memorials</h2>
+    <div class="row">
+
+      <!-- Pet 1 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card border border-light rounded-3 shadow-sm h-100 text-center">
+          <img src="{% static 'images/cat887.jpg' %}" class="mx-auto mt-4 mb-3 rounded-circle" style="width: 150px; height: 150px; object-fit: cover;" alt="Fluffy the Cat"/>
+          <div class="card-body">
+            <h4 class="card-title fw-semibold mb-2">Fluffy</h4>
+            <p class="card-text text-muted fs-6">"Your purrs still echo in our hearts."</p>
+            <p class="text-secondary">Passed: Jan 15, 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pet 2 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card border border-light rounded-3 shadow-sm h-100 text-center">
+          <img src="{% static 'images/cat781.jpg' %}" class="mx-auto mt-4 mb-3 rounded-circle" style="width: 150px; height: 150px; object-fit: cover;" alt="Rex the Cat"/>
+          <div class="card-body">
+            <h4 class="card-title fw-semibold mb-2">Rex</h4>
+            <p class="card-text text-muted fs-6">"Your bark was the soundtrack of our home."</p>
+            <p class="text-secondary">Passed: Feb 3, 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pet 3 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card border border-light rounded-3 shadow-sm h-100 text-center">
+          <img src="{% static 'images/cat4394.jpg' %}" class="mx-auto mt-4 mb-3 rounded-circle" style="width: 150px; height: 150px; object-fit: cover;" alt="Bella the Cat"/>
+          <div class="card-body">
+            <h4 class="card-title fw-semibold mb-2">Bella</h4>
+            <p class="card-text text-muted fs-6">"Small hops, big love."</p>
+            <p class="text-secondary">Passed: March 10, 2025</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- 🐾 ChatGPT: End of Latest Memorials Section -->
+
+
+
+      <!-- Our Blog-->
+      <section class="section section-lg">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-12 text-center">
+              <h3 class="title-decorate">Latest Posts</h3>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow fadeInUp">
+                <div class="post-modern">
+                  <div class="post-modern-figure"><a href="single-blog-post.html"><img src="{% static 'images/post-modern-1-370x255.jpg' %}" alt="" width="370" height="255"/></a><a class="badge-primary badge" href="#">News</a></div>
+                  <div class="post-modern-caption">
+                    <p class="post-modern-date">April 25, 2021    </p>
+                    <h4 class="post-modern-title"><a href="single-blog-post.html">Coping with Pet Loss</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow slideInDown">
+                <div class="post-modern post-modern-reverse">
+                  <div class="post-modern-figure"><a href="single-blog-post.html"><img src="{% static 'images/post-modern-2-370x255.jpg' %}" alt="" width="370" height="255"/></a><a class="badge-secondary badge" href="#">Tips</a></div>
+                  <div class="post-modern-caption">
+                    <p class="post-modern-date">April 25, 2021</p>
+                    <h4 class="post-modern-title"><a href="single-blog-post.html">Helping Kids Say Goodbye</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow fadeInUp">
+                <div class="post-modern">
+                  <div class="post-modern-caption">
+                    <p class="post-modern-date">April 25, 2021</p>
+                    <h4 class="post-modern-title"><a href="single-blog-post.html">Writing a Tribute for Your Pet</a></h4>
+                    <div class="post-modern-text">
+                      <p>More and more couples are choosing the Great Outdoors as the perfect venue to begin their married journey together. There are some unique things to consider however, if you are planning to celebrate your wedding on the beach, mountain top or under the stars. Your very first consideration...</p>
+                    </div><a class="badge" href="#">Wedding</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 {% endblock %}

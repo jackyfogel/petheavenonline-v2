@@ -1,54 +1,48 @@
-<!-- Page Footer-->
-<footer class="section footer-classic">
+{% load static %}
+<footer class="section footer-classic context-dark">
   <div class="container">
-    <div class="row row-30">
-      <div class="col-lg-4">
-        <div class="pr-xl-5">
-          <h5>About Pet Heaven</h5>
-          <p>A place to honor and remember our beloved pets who have crossed the rainbow bridge. Share their stories, memories, and the love that will forever remain in our hearts.</p>
-          <ul class="social-list">
-            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-facebook" href="#"></a></li>
-            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-instagram" href="#"></a></li>
-            <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-twitter" href="#"></a></li>
-          </ul>
+    <div class="row row-50">
+      <div class="col-lg-8 order-lg-2 ps-xl-5 wow-outer">
+        <div class="wow slideInRight">
+          <div class="row row-50">
+
+            <div class="col-md-6">
+              <h5 class="footer-title">Contacts</h5>
+              <ul class="list-contact-info">
+                <li><span class="icon mdi mdi-map-marker icon-md icon-secondary"></span><span class="list-item-text"><a href="#">51 Francis Street, Darlinghurst NSW 2010, United States</a></span></li>
+                <li><span class="icon mdi mdi-phone icon-md icon-secondary"></span><span class="list-item-text"><a href="tel:#">1-800-123-1234</a></span></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h5 class="footer-title">Get Social</h5>
+              <p class="big">Follow us to stay connected and receive instant updates.</p>
+              <ul class="social-list">
+                <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-facebook" href="#"></a></li>
+                <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-instagram" href="#"></a></li>
+                <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-twitter" href="#"></a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-lg-4">
-        <h5>Quick Links</h5>
-        <ul class="nav-list">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'memorial_list' %}">Pet Memorials</a></li>
-          <li><a href="{% url 'blog_list' %}">Blog</a></li>
-          {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-          {% endif %}
-        </ul>
-      </div>
-      <div class="col-lg-4">
-        <h5>Contact Information</h5>
-        <dl class="contact-list">
-          <dt>Email:</dt>
-          <dd><a href="mailto:info@petheaven.com">info@petheaven.com</a></dd>
-          <dt>Address:</dt>
-          <dd>123 Rainbow Bridge Lane, Pet Heaven, PH 12345</dd>
-          <dt>Phone:</dt>
-          <dd><a href="tel:#">1-800-PET-LOVE</a></dd>
-        </dl>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 text-center">
-        <div class="rights">
-          <span>&copy; {% now 'Y' %} Pet Heaven. All Rights Reserved.</span>
-          <span>|</span>
-          <a href="#">Privacy Policy</a>
-          <span>|</span>
-          <a href="#">Terms of Service</a>
+      <div class="col-lg-4 order-lg-1 pe-xl-5 wow-outer">
+        <div class="wow slideInLeft">
+          <div class="row row-30">
+            <div class="col-12">
+              <a class="brand" href="index.html"><img class="brand-logo-dark" src="{% static 'images/logo.webp' %}" alt="" /><img class="brand-logo-light" src="{% static 'images/logo.webp' %}" alt="" /></a>
+            </div>
+            <div class="col-12">
+              <p>Pet Heaven Online offers a compassionate space to honor the memory of your beloved pets. With heartfelt care and dedication, we help you create meaningful memorials that celebrate the joy, love, and companionship they brought into your life.</p>
+              <div class="footer-divider"></div>
+              <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>Pet Heaven Online</span><span>.&nbsp;All Rights Reserved.&nbsp;</span><a href="privacy-policy.html">Privacy Policy</a></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+    <div class="container-fluid text-center py-4 bg-light">
+  <p class="big mb-0 mt-4" style="font-size: 1.25rem; font-weight: bold;">For my Amyboulecat and all the others 🐾💜</p>
+</div>
+
 </footer>
