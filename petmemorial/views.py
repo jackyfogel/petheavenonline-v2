@@ -33,11 +33,9 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            
             # Prepare email
             html_message = render_to_string('petmemorial/email/welcome.html', {'user': user})
             plain_message = strip_tags(html_message)
-            
             # Send welcome email
             try:
                 send_mail(
@@ -51,9 +49,7 @@ def register(request):
                 messages.success(request, 'Registration successful! Please check your email for a welcome message.')
             except Exception as e:
                 messages.warning(request, 'Account created successfully, but we could not send the welcome email. Please contact support if needed.')
-            
-            # Log in the user and redirect to success page
-            auth_login(request, user)
+            # Redirect to success page (do NOT log in the user)
             return redirect('registration_success')
         else:
             messages.error(request, 'Please correct the errors below.')
