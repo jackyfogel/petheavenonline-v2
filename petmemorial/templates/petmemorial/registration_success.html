@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registration Success - Pet Heaven{% endblock %}
+
+{% block content %}
+<!-- Parallax Header -->
+<section class="section parallax-container breadcrumb-media-content" data-parallax-img="{% static 'images/bg-bunner-1.jpg' %}">
+    <div class="parallax-content breadcrumbs-custom context-dark">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9">
+                    <h2 class="breadcrumbs-custom-title">Registration Success</h2>
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li class="active">Registration Success</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success Message -->
+<section class="section section-md bg-default">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="mb-4">
+                    <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
+                </div>
+                <h2 class="mb-4">Thanks for registering!</h2>
+                <p class="lead mb-4">Please check your email to confirm your account.</p>
+                <div class="mt-4">
+                    <a href="{% url 'home' %}" class="button button-lg button-gradient">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

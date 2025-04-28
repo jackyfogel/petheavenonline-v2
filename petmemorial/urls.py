@@ -10,6 +10,7 @@ urlpatterns = [
     path('memorial/submit/', views.submit_memorial, name='submit_memorial'),
     path('memorial/<slug:slug>/', views.memorial, name='memorial'),
     path('register/', views.register, name='register'),
+    path('registration-success/', views.registration_success, name='registration_success'),
     path('login/', auth_views.LoginView.as_view(
         template_name='registration/login.html',
         authentication_form=EmailAuthenticationForm

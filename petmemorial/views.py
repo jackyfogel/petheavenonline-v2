@@ -27,6 +27,8 @@ def memorial(request, slug):
     return render(request, 'petmemorial/memorial.html', {'p': p})
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -50,14 +52,17 @@ def register(request):
             except Exception as e:
                 messages.warning(request, 'Account created successfully, but we could not send the welcome email. Please contact support if needed.')
             
-            # Log in the user and redirect to home
+            # Log in the user and redirect to success page
             auth_login(request, user)
-            return redirect('home')
+            return redirect('registration_success')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
         form = RegisterForm()
     return render(request, 'petmemorial/register.html', {'form': form})
+
+def registration_success(request):
+    return render(request, 'petmemorial/registration_success.html')
 
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('home')
