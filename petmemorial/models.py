@@ -64,6 +64,7 @@ class PetMemorial(models.Model):
     video_url = models.URLField(blank=True, null=True)
     owner_display_name = models.CharField(blank=True, null=True, max_length=100)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def clean(self):
         if self.year_of_death < self.year_of_birth:

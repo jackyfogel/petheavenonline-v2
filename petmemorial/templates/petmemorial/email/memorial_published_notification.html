@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Your Memorial is Now Live!</h1>
+    </div>
+    <div class="content">
+        <p>Dear {{ user.email }},</p>
+        <p>We are pleased to inform you that your memorial for <strong>{{ memorial.pet_name }}</strong> has been reviewed and is now published on Pet Heaven.</p>
+        <p>You can view and share your memorial using the link below:</p>
+        <p style="text-align:center;">
+            <a href="{{ memorial_url }}">{{ memorial_url }}</a>
+        </p>
+        <p><strong>Memorial Details:</strong></p>
+        <ul>
+            <li>Pet Name: {{ memorial.pet_name }}</li>
+            <li>Species: {{ memorial.species }}</li>
+            <li>Breed: {{ memorial.breed }}</li>
+            <li>Years: {{ memorial.year_of_birth }} - {{ memorial.year_of_death }}</li>
+        </ul>
+        <p>Thank you for sharing your beloved pet's story with our community.</p>
+        <p>With warm regards,<br>The Pet Heaven Team</p>
+    </div>
+</body>
+</html> 

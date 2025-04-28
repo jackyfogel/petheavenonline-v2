@@ -88,7 +88,7 @@ def submit_memorial(request):
                 'user': request.user,
                 'request': request,
                 'description_preview': memorial.about_pet[:200] + '...' if len(memorial.about_pet) > 200 else memorial.about_pet,
-                'pet_name': memorial.name,
+                'pet_name': memorial.pet_name,
                 'year_of_death': memorial.year_of_death,
                 'species': memorial.species,
                 'breed': memorial.breed,
@@ -100,7 +100,7 @@ def submit_memorial(request):
             try:
                 # Send email to admin
                 send_mail(
-                    subject=f'New Memorial Submission: {memorial.name} ({memorial.species})',
+                    subject=f'New Memorial Submission: {memorial.pet_name} ({memorial.species})',
                     message=plain_message,
                     html_message=html_message,
                     from_email=settings.EMAIL_HOST_USER,
@@ -112,7 +112,7 @@ def submit_memorial(request):
                 user_context = {
                     'memorial': memorial,
                     'user': request.user,
-                    'pet_name': memorial.name,
+                    'pet_name': memorial.pet_name,
                     'species': memorial.species,
                     'breed': memorial.breed,
                     'submission_date': memorial.created_at.strftime('%B %d, %Y'),
@@ -121,7 +121,7 @@ def submit_memorial(request):
                 user_plain_message = strip_tags(user_html_message)
                 
                 send_mail(
-                    subject=f'Memorial Submission Received: {memorial.name}',
+                    subject=f'Memorial Submission Received: {memorial.pet_name}',
                     message=user_plain_message,
                     html_message=user_html_message,
                     from_email=settings.EMAIL_HOST_USER,
@@ -129,21 +129,20 @@ def submit_memorial(request):
                     fail_silently=False,
                 )
 
-                messages.success(
-                    request, 
-                    'Your memorial has been submitted successfully. Our team will review it within 24-48 hours. '
-                    'You will receive an email notification once it is approved.'
-                )
+                # Redirect to a new success page
+                return redirect('memorial_submission_success')
             except Exception as e:
                 messages.warning(
                     request, 
                     'Your memorial was submitted successfully, but we encountered an issue notifying our review team. '
                     'Rest assured, they will still review your submission shortly.'
                 )
-
-            return redirect('memorial_list')
+                return redirect('memorial_list')
     else:
         form = MemorialSubmissionForm()
     
     return render(request, 'petmemorial/submit_memorial.html', {'form': form})
+
+def memorial_submission_success(request):
+    return render(request, 'petmemorial/memorial_submission_success.html')
 

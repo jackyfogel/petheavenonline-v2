@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Memorial Submitted - Pet Heaven{% endblock %}
+
+{% block content %}
+<section class="section section-md bg-default d-flex align-items-center" style="min-height: 60vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="mb-4">
+                    <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
+                </div>
+                <h2 class="mb-4">Thank you! Your memorial has been submitted and is pending approval.</h2>
+                <p class="lead mb-4">
+                    Our team will review it within 24-48 hours.<br>
+                    You will receive an email once it is published.
+                </p>
+                <div class="mt-4">
+                    <a href="/" class="button button-lg button-gradient">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

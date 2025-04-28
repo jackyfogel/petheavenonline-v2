@@ -50,13 +50,13 @@
         <p>A new memorial has been submitted and requires your review.</p>
         
         <div class="details">
-            <p><strong>Pet Name:</strong> {{ memorial.name }}</p>
+            <p><strong>Pet Name:</strong> {{ memorial.pet_name }}</p>
             <p><strong>Submitted By:</strong> {{ user.email }}</p>
             <p><strong>Species:</strong> {{ memorial.species }}</p>
             <p><strong>Breed:</strong> {{ memorial.breed }}</p>
             <p><strong>Year of Birth:</strong> {{ memorial.year_of_birth }}</p>
             <p><strong>Year of Death:</strong> {{ memorial.year_of_death }}</p>
-            <p><strong>Description:</strong> {{ memorial.description|truncatewords:50 }}</p>
+            <p><strong>Description:</strong> {{ memorial.about_pet|truncatewords:50 }}</p>
         </div>
 
         <p>Please review this submission and take appropriate action.</p>
