@@ -11,7 +11,11 @@ import os
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.conf import settings
+import logging
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
 
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -34,7 +38,10 @@ def register(request):
         if form.is_valid():
             user = form.save()
             # Prepare email
-            html_message = render_to_string('petmemorial/email/welcome.html', {'user': user})
+            html_message = render_to_string('petmemorial/email/welcome.html', {
+                'user': user,
+                'site_url': request.build_absolute_uri('/')
+            })
             plain_message = strip_tags(html_message)
             # Send welcome email
             try:
@@ -46,13 +53,10 @@ def register(request):
                     recipient_list=[user.email],
                     fail_silently=False,
                 )
-                messages.success(request, 'Registration successful! Please check your email for a welcome message.')
             except Exception as e:
-                messages.warning(request, 'Account created successfully, but we could not send the welcome email. Please contact support if needed.')
+                logger.warning(f'Account created for {user.email} but welcome email failed: {str(e)}')
             # Redirect to success page (do NOT log in the user)
             return redirect('registration_success')
-        else:
-            messages.error(request, 'Please correct the errors below.')
     else:
         form = RegisterForm()
     return render(request, 'petmemorial/register.html', {'form': form})
@@ -70,31 +74,26 @@ def submit_memorial(request):
         if form.is_valid():
             memorial = form.save(commit=False)
             memorial.user = request.user
-            memorial.status = 'pending'  # Set status to pending
+            memorial.status = 'pending'
             memorial.save()
-
+            
             # Handle gallery images
-            gallery_images = request.FILES.getlist('gallery_images')
-            for index, image in enumerate(gallery_images):
-                MemorialImage.objects.create(
-                    memorial=memorial,
-                    image=image,
-                    order=index
-                )
-
-            # Send email notification to admin
+            images = request.FILES.getlist('gallery_images')
+            for image in images:
+                MemorialImage.objects.create(memorial=memorial, image=image)
+            
+            # Prepare email context
             context = {
                 'memorial': memorial,
                 'user': request.user,
-                'request': request,
-                'description_preview': memorial.about_pet[:200] + '...' if len(memorial.about_pet) > 200 else memorial.about_pet,
                 'pet_name': memorial.pet_name,
-                'year_of_death': memorial.year_of_death,
                 'species': memorial.species,
                 'breed': memorial.breed,
                 'submission_date': memorial.created_at.strftime('%B %d, %Y'),
             }
-            html_message = render_to_string('petmemorial/email/new_memorial_notification.html', context)
+            
+            # Render email templates
+            html_message = render_to_string('petmemorial/email/memorial_submission_notification.html', context)
             plain_message = strip_tags(html_message)
             
             try:
@@ -132,10 +131,8 @@ def submit_memorial(request):
                 # Redirect to a new success page
                 return redirect('memorial_submission_success')
             except Exception as e:
-                messages.warning(
-                    request, 
-                    'Your memorial was submitted successfully, but we encountered an issue notifying our review team. '
-                    'Rest assured, they will still review your submission shortly.'
+                logger.warning(
+                    f'Memorial submission for {memorial.pet_name} succeeded but email notification failed: {str(e)}'
                 )
                 return redirect('memorial_list')
     else:
@@ -145,4 +142,14 @@ def submit_memorial(request):
 
 def memorial_submission_success(request):
     return render(request, 'petmemorial/memorial_submission_success.html')
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+    authentication_form = EmailAuthenticationForm
+
+    def get_success_url(self):
+        next_url = self.request.GET.get('next') or self.request.POST.get('next')
+        if next_url:
+            return next_url
+        return reverse_lazy('home')
 

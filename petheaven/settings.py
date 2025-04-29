@@ -31,6 +31,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
+
 
 # Application definition
 
@@ -170,3 +172,4 @@ ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'admin@petheavenonline.com')  # Email add
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'

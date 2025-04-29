@@ -56,8 +56,30 @@
         </ul>
         
         <p style="text-align: center;">
-            <a href="https://petheaven.com/memorials/create" class="button">Create Your First Memorial</a>
+            <a href="{{ site_url }}memorial/submit/" class="button">Create Your First Memorial</a>
         </p>
+        
+        <script>
+            function checkLoginStatus(e) {
+                e.preventDefault();
+                fetch('{{ site_url }}', {
+                    credentials: 'include'
+                })
+                .then(response => {
+                    // If we get redirected to login, user is not logged in
+                    if (response.url.includes('login')) {
+                        window.location.href = e.target.getAttribute('data-login-url');
+                    } else {
+                        // User is logged in, go directly to submit
+                        window.location.href = e.target.getAttribute('data-submit-url');
+                    }
+                })
+                .catch(() => {
+                    // On any error, try the login URL to be safe
+                    window.location.href = e.target.getAttribute('data-login-url');
+                });
+            }
+        </script>
         
         <p>If you need any assistance or have questions, don't hesitate to reach out to our support team.</p>
         

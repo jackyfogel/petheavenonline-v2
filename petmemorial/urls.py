@@ -11,10 +11,7 @@ urlpatterns = [
     path('memorial/<slug:slug>/', views.memorial, name='memorial'),
     path('register/', views.register, name='register'),
     path('registration-success/', views.registration_success, name='registration_success'),
-    path('login/', auth_views.LoginView.as_view(
-        template_name='registration/login.html',
-        authentication_form=EmailAuthenticationForm
-    ), name='login'),
+    path('login/', views.CustomLoginView.as_view(), name='login'),
     path('logout/', views.CustomLogoutView.as_view(), name='logout'),
     
     # Password Reset URLs

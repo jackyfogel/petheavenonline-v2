@@ -55,6 +55,7 @@
 
                 <form method="post" action="{% url 'login' %}" novalidate>
                     {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
                     
                     <div class="mb-3">
                         <input type="email" name="username" class="form-control" placeholder="Email" required id="id_username">
