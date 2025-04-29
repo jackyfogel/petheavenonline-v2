@@ -55,6 +55,8 @@ def register(request):
                 )
             except Exception as e:
                 logger.warning(f'Account created for {user.email} but welcome email failed: {str(e)}')
+            # Clear any pending messages
+            messages.get_messages(request)
             # Redirect to success page (do NOT log in the user)
             return redirect('registration_success')
     else:
