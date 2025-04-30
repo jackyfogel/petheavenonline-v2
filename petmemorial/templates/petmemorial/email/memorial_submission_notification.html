@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>New Memorial Submission</h1>
+    </div>
+    
+    <div class="content">
+        <p>Dear Admin,</p>
+        
+        <p>A new memorial has been submitted for review.</p>
+        
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li>Pet Name: {{ memorial.pet_name }}</li>
+            <li>Submitted By: {{ memorial.created_by.get_full_name }}</li>
+            <li>Submission Date: {{ memorial.created_at|date:"F j, Y" }}</li>
+        </ul>
+        
+        <p>Please review this submission at your earliest convenience.</p>
+        
+        <p>You can view the full submission details by clicking the link below:</p>
+        
+        <p style="text-align: center;">
+            <a href="{{ site_url }}{% url 'admin:petmemorial_petmemorial_change' memorial.id %}" 
+               style="background-color: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+                Review Memorial
+            </a>
+        </p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated message from Pet Heaven Online. Please do not reply to this email.</p>
+    </div>
+</body>
+</html> 

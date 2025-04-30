@@ -14,6 +14,7 @@ from django.conf import settings
 import logging
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
+from django.template.loaders.app_directories import get_app_template_dirs
 
 logger = logging.getLogger(__name__)
 
@@ -92,14 +93,37 @@ def submit_memorial(request):
                 'species': memorial.species,
                 'breed': memorial.breed,
                 'submission_date': memorial.created_at.strftime('%B %d, %Y'),
+                'site_url': request.build_absolute_uri('/'),
             }
             
-            # Render email templates
-            html_message = render_to_string('petmemorial/email/memorial_submission_notification.html', context)
-            plain_message = strip_tags(html_message)
-            
             try:
+                logger.error(f"Starting email process for memorial {memorial.pet_name}")
+                logger.error(f"Email settings: HOST={settings.EMAIL_HOST}, PORT={settings.EMAIL_PORT}, USER={settings.EMAIL_HOST_USER}")
+                logger.error(f"Admin email: {settings.ADMIN_EMAIL}")
+                
+                # Try both template locations
+                template_paths = [
+                    'petmemorial/email/memorial_submission_notification.html',
+                    'email/memorial_submission_notification.html',
+                ]
+                
+                html_message = None
+                for template_path in template_paths:
+                    try:
+                        html_message = render_to_string(template_path, context)
+                        logger.error(f"Successfully rendered template: {template_path}")
+                        break
+                    except Exception as template_error:
+                        logger.error(f"Failed to render template {template_path}: {str(template_error)}")
+                        continue
+                
+                if html_message is None:
+                    raise Exception("Could not find template in any location")
+                
+                plain_message = strip_tags(html_message)
+                
                 # Send email to admin
+                logger.error("Attempting to send admin notification email...")
                 send_mail(
                     subject=f'New Memorial Submission: {memorial.pet_name} ({memorial.species})',
                     message=plain_message,
@@ -108,8 +132,10 @@ def submit_memorial(request):
                     recipient_list=[settings.ADMIN_EMAIL],
                     fail_silently=False,
                 )
+                logger.error("Admin notification email sent successfully")
 
                 # Send confirmation email to user
+                logger.error(f"Attempting to send confirmation email to {request.user.email}...")
                 user_context = {
                     'memorial': memorial,
                     'user': request.user,
@@ -117,6 +143,7 @@ def submit_memorial(request):
                     'species': memorial.species,
                     'breed': memorial.breed,
                     'submission_date': memorial.created_at.strftime('%B %d, %Y'),
+                    'site_url': request.build_absolute_uri('/'),
                 }
                 user_html_message = render_to_string('petmemorial/email/memorial_submission_confirmation.html', user_context)
                 user_plain_message = strip_tags(user_html_message)
@@ -129,14 +156,16 @@ def submit_memorial(request):
                     recipient_list=[request.user.email],
                     fail_silently=False,
                 )
+                logger.error("User confirmation email sent successfully")
 
                 # Redirect to a new success page
                 return redirect('memorial_submission_success')
             except Exception as e:
-                logger.warning(
-                    f'Memorial submission for {memorial.pet_name} succeeded but email notification failed: {str(e)}'
-                )
-                return redirect('memorial_list')
+                logger.error(f'Memorial submission email error: {str(e)}')
+                logger.error(f'Email settings - HOST: {settings.EMAIL_HOST}, PORT: {settings.EMAIL_PORT}, TLS: {settings.EMAIL_USE_TLS}')
+                logger.error(f'From email: {settings.EMAIL_HOST_USER}, To admin: {settings.ADMIN_EMAIL}')
+                # Still redirect to success even if email fails
+                return redirect('memorial_submission_success')
     else:
         form = MemorialSubmissionForm()
     
