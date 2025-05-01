@@ -11,6 +11,7 @@ from django.urls import reverse
 class PetMemorialGalleryImageInline(admin.TabularInline):
     model = MemorialImage
     extra = 1  # Show 1 empty image slot by default
+    can_delete = True  # Enable deletion of gallery images
 
 class CandleMessageInline(admin.TabularInline):
     model = CandleMessage
