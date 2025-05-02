@@ -4,14 +4,14 @@
 {% block title %}{{ p.pet_name }}'s Memorial - Pet Heaven{% endblock %}
 
 {% block content %}
-    <section class="text-white position-relative py-5" style="
+<section class="text-white position-relative py-5" style="
   background-image: url('{% static 'images/breadcrumbs-bg.jpg' %}');
   background-size: cover;
   background-position: center;
   overflow: hidden;
 ">
-  <!-- Dark overlay -->
-  <div style="
+    <!-- Dark overlay -->
+    <div style="
     position: absolute;
     top: 0;
     left: 0;
@@ -21,23 +21,22 @@
     z-index: 1;
   "></div>
 
-  <!-- Actual content -->
-  <div class="container text-center position-relative" style="z-index: 2;padding-top:7rem;">
-      {% if p.photo %}
-          <img
-      src="{{ p.photo.url }}"
-      class="rounded-circle mb-4 img-fluid"
-      alt="Pet Photo"
+    <!-- Actual content -->
+    
+    <div class="container text-center position-relative" style="z-index: 2;padding-top:7rem;">
+        <h2 class="breadcrumbs-custom-title mb-4" style="color:#ffffff">In Loving Memory of {{ p.pet_name}}</h2>
+        {% if p.photo %}
+        <img src="{{ p.photo.url }}"
+             class="rounded-circle mb-4 img-fluid"
+             alt="Pet Photo"
+             style="display: block; margin: 0 auto;" />
+        {% endif %}
 
-      style="display: block; margin: 0 auto;"
-    />
-      {% endif %}
 
-    <h2 class="breadcrumbs-custom-title" style="color:#ffffff">In Loving Memory {{ p.pet_name}}</h2>
-    <p class="lead">{{ p.year_of_birth }} – {{ p.year_of_death }}</p>
-    <p class="fst-italic">"{{ p.tribute_quote}}"</p>
-     <p class="fst-italic">By {{ p.owner_display_name}}</p>
-  </div>
+        <p class="lead">{{ p.year_of_birth }} – {{ p.year_of_death }}</p>
+        <p class="fst-italic">"{{ p.tribute_quote}}"</p>
+        <p class="fst-italic">By {{ p.owner_display_name}}</p>
+    </div>
 </section>
     <section class="section section-lg bg-default">
   <div class="container">
@@ -45,7 +44,7 @@
     <div class="row mb-5">
       <div class="col-lg-8 mx-auto text-center">
         <h3>{{ p.pet_name }} - A Life Well Lived</h3>
-        <p><strong>Species: {{ p.species }} | Breed:</strong> {{ p.breed}} | <strong>Traits:</strong> Loyal, Gentle, Joyful</p>
+        <p><strong>Species:</strong> {{ p.species }} | {% if p.breed %}Breed: {{ p.breed}} |{% endif %} <strong>Traits:</strong> Loyal, Gentle, Joyful</p>
       </div>
     </div>
 

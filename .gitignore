@@ -27,3 +27,4 @@ staticfiles/
 
 # MacOS junk
 .DS_Store
+.vs/
