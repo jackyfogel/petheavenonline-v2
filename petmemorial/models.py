@@ -50,7 +50,7 @@ class PetMemorial(models.Model):
         ("other", "Other"),
     ]
 
-    photo = models.ImageField(upload_to=pet_memorial_profile_photo_path, null=True, blank=True)
+    photo = models.ImageField(upload_to=    pet_memorial_profile_photo_path)
     pet_name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True, editable=False)
     year_of_birth = models.IntegerField()

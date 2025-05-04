@@ -1,1 +1,13 @@
-.memorial-submission-form .form-label{display: none;}
+.memorial-submission-form .form-label{
+
+position: relative !important;
+top:10px;
+padding:0 0 0 3px;
+
+}
+
+.text-danger {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  vertical-align: bottom;
+}

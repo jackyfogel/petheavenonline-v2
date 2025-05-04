@@ -171,7 +171,6 @@ class MemorialSubmissionForm(forms.ModelForm):
     year_of_birth = forms.IntegerField(
         widget=forms.NumberInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Year of birth',
             'min': 1900,
             'max': datetime.now().year
         })
@@ -179,7 +178,6 @@ class MemorialSubmissionForm(forms.ModelForm):
     year_of_death = forms.IntegerField(
         widget=forms.NumberInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Year of death',
             'min': 1900,
             'max': datetime.now().year
         })
@@ -203,35 +201,30 @@ class MemorialSubmissionForm(forms.ModelForm):
         widgets = {
             'pet_name': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Your pet\'s name'
+
             }),
             'species': forms.Select(attrs={
                 'class': 'form-control'
             }),
             'breed': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Breed (optional)'
+                'class': 'form-control'
             }),
             'tribute_quote': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'A special quote or message for your pet'
+                'class': 'form-control'
+
             }),
             'dominant_traits': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Personality traits (optional)'
+                'class': 'form-control'
             }),
             'about_pet': forms.Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': 'Share your pet\'s story',
                 'rows': 5
             }),
             'video_url': forms.URLInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'YouTube or Vimeo URL (optional)'
+                'class': 'form-control'
             }),
             'owner_display_name': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'How you want your name displayed (optional)'
+                'class': 'form-control'
             }),
             'photo': forms.FileInput(attrs={
                 'class': 'form-control',
