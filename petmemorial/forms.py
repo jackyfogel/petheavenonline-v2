@@ -9,6 +9,8 @@ from .models import PetMemorial
 import re
 from datetime import datetime
 
+YEAR_CHOICES = [(y, y) for y in range(1985, datetime.now().year + 1)]
+
 class MultipleImageInput(Widget):
     template_name = 'django/forms/widgets/file.html'
     
@@ -168,19 +170,13 @@ class MemorialSubmissionForm(forms.ModelForm):
             'class': 'form-control'
         })
     )
-    year_of_birth = forms.IntegerField(
-        widget=forms.NumberInput(attrs={
-            'class': 'form-control',
-            'min': 1900,
-            'max': datetime.now().year
-        })
+    year_of_birth = forms.ChoiceField(
+        choices=YEAR_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
-    year_of_death = forms.IntegerField(
-        widget=forms.NumberInput(attrs={
-            'class': 'form-control',
-            'min': 1900,
-            'max': datetime.now().year
-        })
+    year_of_death = forms.ChoiceField(
+        choices=YEAR_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
     images = MultipleFileField(
         required=False,
